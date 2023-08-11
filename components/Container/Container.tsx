@@ -5,7 +5,7 @@ type Props = {
 };
 
 export const Container = ({ children }: Props) => (
-  <div className="px-3 mx-auto bg-gradient-radial h-screen w-screen flex items-center justify-center flex-col">
+  <div className="px-4 py-8 flex items-center flex-col min-h-screen">
     {children}
   </div>
 );

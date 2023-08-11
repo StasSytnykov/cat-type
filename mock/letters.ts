@@ -1,4 +1,4 @@
-export const arrOfWords = [
+export const arrOfLetters = [
   "I",
   "t",
   " ",
