@@ -1,5 +1,5 @@
 export const arrOfWords = [
-  "i",
+  "I",
   "t",
   " ",
   "w",

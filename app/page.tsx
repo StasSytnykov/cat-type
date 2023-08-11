@@ -4,6 +4,7 @@ import { useState, KeyboardEvent } from "react";
 import { twMerge } from "tailwind-merge";
 import { Container } from "@/components/Container/Container";
 import { arrOfWords } from "@/mock/sentences";
+import { SPECIFIC_KEYS } from "@/constants/constants";
 
 export default function Home() {
   const [arrOfTypedWords, setArrOfTypedWords] = useState([""]);
@@ -12,13 +13,22 @@ export default function Home() {
   const [mistakeCounter, setMistakeCounter] = useState(0);
 
   const onPressKeyDownHandler = (event: KeyboardEvent<HTMLElement>) => {
-    if (event.key === arrOfWords[counter]) {
+    if (
+      event.key === arrOfWords[counter] &&
+      !SPECIFIC_KEYS.includes(event.key)
+    ) {
       setCounter((prevState) => prevState + 1);
-    } else if (counter !== arrOfWords.length) {
+    } else if (
+      counter !== arrOfWords.length &&
+      !SPECIFIC_KEYS.includes(event.key)
+    ) {
       setMistakeCounter((prevState) => prevState + 1);
     }
 
-    if (event.key !== arrOfWords[counter]) {
+    if (
+      event.key !== arrOfWords[counter] &&
+      !SPECIFIC_KEYS.includes(event.key)
+    ) {
       setWrongLetterIndex(counter + 1);
     } else {
       setWrongLetterIndex(0);
