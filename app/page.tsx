@@ -1,28 +1,27 @@
 "use client";
 
+import { useState, KeyboardEvent } from "react";
+import { twMerge } from "tailwind-merge";
 import { Container } from "@/components/Container/Container";
-import { useState } from "react";
-import { KeyboardEvent } from "react";
 import { arrOfWords } from "@/mock/sentences";
 
 export default function Home() {
   const [arrOfTypedWords, setArrOfTypedWords] = useState([""]);
-  const [isWrong, setIsWrong] = useState(false);
+  const [wrongLetterIndex, setWrongLetterIndex] = useState(0);
   const [counter, setCounter] = useState(0);
   const [mistakeCounter, setMistakeCounter] = useState(0);
 
-  console.log(arrOfTypedWords);
   const onPressKeyDownHandler = (event: KeyboardEvent<HTMLElement>) => {
     if (event.key === arrOfWords[counter]) {
       setCounter((prevState) => prevState + 1);
-    } else {
+    } else if (counter !== arrOfWords.length) {
       setMistakeCounter((prevState) => prevState + 1);
     }
 
     if (event.key !== arrOfWords[counter]) {
-      setIsWrong(true);
+      setWrongLetterIndex(counter + 1);
     } else {
-      setIsWrong(false);
+      setWrongLetterIndex(0);
     }
 
     setArrOfTypedWords((prevState) => {
@@ -44,14 +43,17 @@ export default function Home() {
           {arrOfWords.map((letter, index) => (
             <p
               key={letter + index}
-              className={`inline opacity-30 ${
-                letter === arrOfTypedWords[index] && "text-blue-400 opacity-100"
-              } ${
-                isWrong &&
-                `[&:nth-child(${index + 1})]:text-red-500 [&:nth-child(${
-                  index + 1
-                })]:opacity-100`
-              } `}
+              className={twMerge(`inline opacity-30 
+               ${
+                 letter === arrOfTypedWords[index] &&
+                 "text-blue-400 opacity-100"
+               } ${
+                 wrongLetterIndex
+                   ? wrongLetterIndex === index + 1 &&
+                     "text-red-500 opacity-100 bg-red-200"
+                   : ""
+               } 
+              `)}
             >
               {letter}
             </p>
