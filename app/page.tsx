@@ -6,8 +6,6 @@ import { Container } from "@/components/Container/Container";
 import { AccuracyChart } from "@/components/AccuracyChart/AccuracyChart";
 import { arrOfLetters } from "@/mock/letters";
 import { SPECIFIC_KEYS } from "@/constants/constants";
-import _default from "chart.js/dist/plugins/plugin.tooltip";
-import opacity = _default.defaults.animations.opacity;
 
 export default function Home() {
   const [arrOfTypedWords, setArrOfTypedWords] = useState([""]);
