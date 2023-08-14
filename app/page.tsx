@@ -44,11 +44,17 @@ export default function Home() {
           </div>
         ) : null}
         <div
-          className={`absolute bottom-full transition-transform ${
+          className={`absolute bottom-full flex flex-col items-center transition-transform ${
             !timeForTyping && "translate-y-[calc(100%+150px)]"
           } delay-300`}
         >
           <AccuracyChart />
+          <button
+            type="button"
+            className="mt-5 text-3xl text-slate-950 hover:text-amber-600/75 focus:text-amber-600/75 transition-colors ease-in-out"
+          >
+            Restart
+          </button>
         </div>
       </Container>
     </div>
