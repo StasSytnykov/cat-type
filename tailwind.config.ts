@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-import plugin from "tailwindcss/plugin";
 
 const config: Config = {
   content: [
@@ -14,12 +13,22 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      keyframes: {
+        pulsing: {
+          "100%": { opacity: "1" },
+          "85%": { opacity: "0.85" },
+          "60%": { opacity: "0.6" },
+          "45%": { opacity: "0.45" },
+          "30%": { opacity: "0.3" },
+          "15%": { opacity: "0.15" },
+          "0%": { opacity: "0" },
+        },
+      },
+      animation: {
+        "typing-pulse": "pulsing 1s linear infinite 0.7s",
+      },
     },
   },
-  plugins: [
-    plugin(function ({ addVariant }) {
-      addVariant("forth", "&:nth-child(4)");
-    }),
-  ],
+  plugins: [],
 };
 export default config;

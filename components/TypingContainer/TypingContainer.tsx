@@ -21,12 +21,12 @@ export const TypingContainer = ({
             ${
               !arrOfTypedLetters[0] &&
               index === 0 &&
-              "before:content-[''] before:absolute before:z-10 before:border-l-2 before:h-6 before:bottom-0.5 before:border-amber-600/75"
+              "before:content-[''] before:absolute before:z-10 before:border-l-2 before:h-6 before:bottom-0.5 before:border-amber-600 before:animate-typing-pulse"
             } 
             ${
               lastTypedLetter[0] === letter &&
               arrOfTypedLetters.length === index + 1 &&
-              "after:content-[''] after:absolute after:z-10 after:border-r-2 after:h-6 after:bottom-1 after:border-amber-600/75"
+              "after:content-[''] after:absolute after:z-10 after:border-r-2 after:h-6 after:bottom-1 after:border-amber-600 after:animate-typing-pulse"
             }
                ${letter === arrOfTypedLetters[index] && "text-blue-400"} 
                ${
