@@ -26,6 +26,7 @@ export const useLetters = () => {
       !SPECIFIC_KEYS.includes(event.key)
     ) {
       setWrongLetterIndex(letterCounter + 1);
+      setTimeout(() => setWrongLetterIndex(0), 300);
     } else {
       setWrongLetterIndex(0);
     }

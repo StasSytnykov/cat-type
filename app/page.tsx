@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Container, TypingContainer, AccuracyChart, Timer } from "@/components";
 import { useLetters } from "@/hooks/useLetters";
+import { useIsTypingStarted } from "@/hooks/useIsTypingStarted";
 
 export default function Home() {
   const [timeForTyping, setTimeForTyping] = useState(15);
@@ -12,11 +13,13 @@ export default function Home() {
     wrongLetterIndex,
     letterMistakeCounter,
   } = useLetters();
+  const isTypingStarted = useIsTypingStarted(arrOfTypedLetters[0]);
 
   return (
     <div
       onKeyDown={onPressKeyHandler}
       tabIndex={0}
+      autoFocus
       className="font-mono outline-0"
     >
       <Container>
@@ -26,16 +29,17 @@ export default function Home() {
               !timeForTyping && "opacity-0"
             } transition-opacity`}
           >
-            <Timer time={timeForTyping} setTimeForTyping={setTimeForTyping} />
+            <Timer
+              time={timeForTyping}
+              setTimeForTyping={setTimeForTyping}
+              isTypingStarted={isTypingStarted}
+            />
             <TypingContainer
               arrOfTypedLetters={arrOfTypedLetters}
               wrongLetterIndex={wrongLetterIndex}
             />
           </div>
         ) : null}
-
-        {/*<h2 className="text-4xl">Mistakes</h2>*/}
-        {/*<p className="text-3xl">{mistakeCounter}</p>*/}
         <div
           className={`absolute bottom-full transition-transform ${
             !timeForTyping && "translate-y-[calc(100%+150px)]"
