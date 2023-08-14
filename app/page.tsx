@@ -12,26 +12,25 @@ export default function Home() {
     arrOfTypedLetters,
     wrongLetterIndex,
     letterMistakeCounter,
+    onResetTypingTest,
   } = useLetters();
-  const isTypingStarted = useIsTypingStarted(
+  const { isTypingStarted, setIsTypingStarted } = useIsTypingStarted(
     arrOfTypedLetters[0],
     letterMistakeCounter,
   );
 
   return (
-    <div
-      onKeyDown={onPressKeyHandler}
-      tabIndex={0}
-      autoFocus
-      className="font-mono outline-0"
-    >
+    <div className="font-mono outline-0">
       <Container>
         {timeForTyping ? (
-          <div
-            className={`w-3/4 h-1/4 ${
-              !timeForTyping && "opacity-0"
-            } transition-opacity`}
-          >
+          <div className={`w-3/4 h-1/4 z-10 ${!timeForTyping && "z-0"}`}>
+            <h1
+              className={`mb-2 ${
+                isTypingStarted && "opacity-0"
+              } transition-opacity text-5xl text-center`}
+            >
+              Try your skill
+            </h1>
             <Timer
               time={timeForTyping}
               setTimeForTyping={setTimeForTyping}
@@ -40,18 +39,25 @@ export default function Home() {
             <TypingContainer
               arrOfTypedLetters={arrOfTypedLetters}
               wrongLetterIndex={wrongLetterIndex}
+              onPressKeyHandler={onPressKeyHandler}
             />
           </div>
         ) : null}
         <div
-          className={`absolute bottom-full flex flex-col items-center transition-transform ${
-            !timeForTyping && "translate-y-[calc(100%+150px)]"
-          } delay-300`}
+          className={`absolute flex flex-col items-center opacity-0 transition-opacity ease-in-out z-0 ${
+            !timeForTyping && "opacity-100 z-10"
+          }`}
         >
           <AccuracyChart />
           <button
             type="button"
             className="mt-5 text-3xl text-slate-950 hover:text-amber-600/75 focus:text-amber-600/75 transition-colors ease-in-out"
+            disabled={!!timeForTyping}
+            onClick={() => {
+              setIsTypingStarted(false);
+              setTimeForTyping(15);
+              onResetTypingTest();
+            }}
           >
             Restart
           </button>

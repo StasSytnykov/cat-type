@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
 export const useIsTypingStarted = (letter: string, mistakeCounter: number) => {
-  const [isStarted, setIsStarted] = useState(false);
+  const [isTypingStarted, setIsTypingStarted] = useState(false);
 
   useEffect(() => {
     if (letter || mistakeCounter) {
-      setIsStarted(true);
+      setIsTypingStarted(true);
     }
   }, [letter, mistakeCounter]);
 
-  return isStarted;
+  return { isTypingStarted, setIsTypingStarted };
 };

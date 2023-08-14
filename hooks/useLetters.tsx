@@ -8,6 +8,13 @@ export const useLetters = () => {
   const [wrongLetterIndex, setWrongLetterIndex] = useState(0);
   const [letterCounter, setLetterCounter] = useState(0);
 
+  const onResetTypingTest = () => {
+    setLetterMistakeCounter(0);
+    setArrOfTypedLetters([""]);
+    setWrongLetterIndex(0);
+    setLetterCounter(0);
+  };
+
   const onPressKeyHandler = (event: KeyboardEvent<HTMLElement>) => {
     if (
       event.key === arrOfLetters[letterCounter] &&
@@ -47,5 +54,6 @@ export const useLetters = () => {
     arrOfTypedLetters,
     wrongLetterIndex,
     letterMistakeCounter,
+    onResetTypingTest,
   };
 };

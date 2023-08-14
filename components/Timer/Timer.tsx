@@ -20,17 +20,12 @@ export const Timer = ({ time, setTimeForTyping, isTypingStarted }: Props) => {
 
   return (
     <div className="flex flex-col justify-center items-center mb-4 text-5xl">
-      <h1
-        className={`mb-2 ${isTypingStarted && "opacity-0"} transition-opacity`}
-      >
-        Try your skill
-      </h1>
       <div
         className={`flex ${isTypingStarted && "opacity-0"} transition-opacity`}
       >
         {times.map((choseTime) => (
           <button
-            tabIndex={-1}
+            key={choseTime}
             className={twMerge(
               `mr-3 last:mr-0 outline-0 text-slate-950 hover:text-amber-600/75 focus:text-amber-600/75 transition-colors ease-in-out ${
                 choseTime === time && "text-amber-600/75"
