@@ -1,4 +1,4 @@
-import { arrOfLetters } from "@/mock/letters";
+import { arrOfLetters } from "@/mock/data";
 import { twMerge } from "tailwind-merge";
 
 type Props = {

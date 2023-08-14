@@ -30,3 +30,5 @@ export const arrOfLetters = [
   "h",
   "t",
 ];
+
+export const times = [15, 30, 45, 60];

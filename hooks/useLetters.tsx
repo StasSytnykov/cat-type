@@ -1,5 +1,5 @@
 import { KeyboardEvent, useState } from "react";
-import { arrOfLetters } from "@/mock/letters";
+import { arrOfLetters } from "@/mock/data";
 import { SPECIFIC_KEYS } from "@/constants/constants";
 
 export const useLetters = () => {

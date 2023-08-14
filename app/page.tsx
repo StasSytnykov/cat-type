@@ -13,7 +13,10 @@ export default function Home() {
     wrongLetterIndex,
     letterMistakeCounter,
   } = useLetters();
-  const isTypingStarted = useIsTypingStarted(arrOfTypedLetters[0]);
+  const isTypingStarted = useIsTypingStarted(
+    arrOfTypedLetters[0],
+    letterMistakeCounter,
+  );
 
   return (
     <div
