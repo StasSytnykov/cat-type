@@ -19,11 +19,6 @@ export default function Home() {
     letterMistakeCounter,
   );
 
-  const story =
-    "In a sleepy village lived Elara, an adventurous girl. Despite warnings about the enchanted forest, she ventured in. Sunlight danced through trees as she wandered, stumbling upon a glimmering pond. Her reflection emerged as Naida, a trapped water nymph. Grateful, Naida offered one wish. Elara chose to understand animals.\n\nSuddenly, leaves and birdsong formed a symphony of voices. She helped animals and mediated disputes. A rabbit warned of lumberjacks threatening the forest. Elara rallied her friends. Birds spread word, villagers joined, and a united front faced the lumberjacks. Elara's speech swayed them, sparing the forest.\n\nHer ability to bridge humans and nature made her a legend. The village and forest thrived, celebrating their harmony yearly. In the heart of the woods, a bond was formed between a curious girl and wild creatures, reminding all of the magic in curiosity and compassion.";
-
-  const letterArray = story.replace(/[^a-zA-Z]/g, "").split("");
-
   return (
     <Container>
       {timeForTyping ? (
