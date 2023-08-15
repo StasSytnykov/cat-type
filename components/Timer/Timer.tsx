@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, RefObject, SetStateAction, useEffect } from "react";
 import { twMerge } from "tailwind-merge";
 import { times } from "@/mock/data";
 
@@ -6,9 +6,15 @@ type Props = {
   time: number;
   setTimeForTyping: Dispatch<SetStateAction<number>>;
   isTypingStarted: boolean;
+  typingContainerRef: RefObject<HTMLDivElement>;
 };
 
-export const Timer = ({ time, setTimeForTyping, isTypingStarted }: Props) => {
+export const Timer = ({
+  time,
+  setTimeForTyping,
+  isTypingStarted,
+  typingContainerRef,
+}: Props) => {
   useEffect(() => {
     if (isTypingStarted) {
       const timerID = setInterval(() => {
@@ -25,6 +31,7 @@ export const Timer = ({ time, setTimeForTyping, isTypingStarted }: Props) => {
       >
         {times.map((choseTime) => (
           <button
+            tabIndex={-1}
             key={choseTime}
             className={twMerge(
               `mr-3 last:mr-0 outline-0 text-slate-950 hover:text-amber-600/75 focus:text-amber-600/75 transition-colors ease-in-out ${
@@ -32,7 +39,10 @@ export const Timer = ({ time, setTimeForTyping, isTypingStarted }: Props) => {
               }`,
             )}
             type="button"
-            onClick={() => !isTypingStarted && setTimeForTyping(choseTime)}
+            onClick={() => {
+              typingContainerRef?.current?.focus();
+              setTimeForTyping(choseTime);
+            }}
           >
             {choseTime}
           </button>

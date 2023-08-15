@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Container, TypingContainer, AccuracyChart, Timer } from "@/components";
 import { useLetters } from "@/hooks/useLetters";
 import { useIsTypingStarted } from "@/hooks/useIsTypingStarted";
 
 export default function Home() {
   const [timeForTyping, setTimeForTyping] = useState(15);
+  const typingContainerRef = useRef<HTMLDivElement>(null);
   const {
     onPressKeyHandler,
     arrOfTypedLetters,
@@ -38,16 +39,19 @@ export default function Home() {
             time={timeForTyping}
             setTimeForTyping={setTimeForTyping}
             isTypingStarted={isTypingStarted}
+            typingContainerRef={typingContainerRef}
           />
           <TypingContainer
             arrOfTypedLetters={arrOfTypedLetters}
             wrongLetterIndex={wrongLetterIndex}
             onPressKeyHandler={onPressKeyHandler}
+            typingContainerRef={typingContainerRef}
           />
           <button
             type="button"
             className="mt-5 text-3xl text-slate-950 hover:text-amber-600/75 focus:text-amber-600/75 transition-colors ease-in-out z-10"
             onClick={() => {
+              typingContainerRef?.current?.focus();
               setIsTypingStarted(false);
               setTimeForTyping(15);
               onResetTypingTest();

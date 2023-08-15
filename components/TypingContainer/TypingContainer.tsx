@@ -1,4 +1,4 @@
-import { KeyboardEvent, useEffect, useRef } from "react";
+import { KeyboardEvent, RefObject, useEffect, useRef } from "react";
 import { arrOfLetters } from "@/mock/data";
 import { twMerge } from "tailwind-merge";
 
@@ -6,17 +6,17 @@ type Props = {
   arrOfTypedLetters: string[];
   wrongLetterIndex: number;
   onPressKeyHandler: (event: KeyboardEvent<HTMLElement>) => void;
+  typingContainerRef: RefObject<HTMLDivElement>;
 };
 
 export const TypingContainer = ({
   arrOfTypedLetters,
   wrongLetterIndex,
   onPressKeyHandler,
+  typingContainerRef,
 }: Props) => {
-  const ref = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    ref?.current?.focus();
+    typingContainerRef?.current?.focus();
   }, []);
 
   return (
@@ -25,7 +25,7 @@ export const TypingContainer = ({
       onKeyDown={onPressKeyHandler}
       autoFocus
       tabIndex={1}
-      ref={ref}
+      ref={typingContainerRef}
     >
       {arrOfLetters.map((letter, index) => {
         const lastTypedLetter = arrOfTypedLetters.slice(-1);
